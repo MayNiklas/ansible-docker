@@ -14,6 +14,17 @@
     groups: docker
     append: yes
 
+- name: Enable docker on startup
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+
+- name: Start docker
+  systemd:
+    state: started
+    name: docker    
+
 # - name: Install required python-docker packages
 #   become: yes
 #   package: name={{ item }} state=latest
