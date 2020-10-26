@@ -6,11 +6,11 @@
     name: docker-compose
     state: present
 
-- name: Add the user "{{ansible_user}}" to the group 'docker'
+- name: Add the user {{ ansible_env.USER }}" to the group 'docker'
   become: yes
   register: group_add
   user:
-    name: "{{ansible_user}}"
+    name: "{{ ansible_env.USER }}"
     groups: docker
     append: yes
 
