@@ -1,7 +1,10 @@
-Role Name
+ansible-docker
 =========
+[![Build Status](https://travis-ci.com/MayNiklas/ansible-docker.svg?branch=main)](https://travis-ci.com/MayNiklas/ansible-docker)
 
-A brief description of the role goes here.
+- installs docker
+- adds ansible_user to group docker
+- installs python3-pip, virtualenv, python3-setuptools, 'python-docker, python3-docker since they are needed for the ansible module docker_container
 
 Requirements
 ------------
