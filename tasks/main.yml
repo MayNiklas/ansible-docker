@@ -1,10 +1,10 @@
 ---
 # tasks file for ansible-docker
 
-- name: Install package foo from repo
-  pacman:
+- name: Install package docker-compose from repo
+  package:
     name: docker-compose
-    state: present
+    state: latest
 
 - name: Add the user {{ ansible_env.USER }}" to the group 'docker'
   become: yes
@@ -14,7 +14,7 @@
     groups: docker
     append: yes
 
-- name: Install required python-docker packages
-  become: yes
-  apt: name={{ item }} state=latest update_cache=yes
-  loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python-docker', 'python3-docker' ]
+# - name: Install required python-docker packages
+#   become: yes
+#   package: name={{ item }} state=latest
+#   loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python-docker', 'python3-docker' ]
