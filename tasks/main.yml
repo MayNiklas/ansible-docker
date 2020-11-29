@@ -28,7 +28,7 @@
     state: started
     name: docker    
 
-- name: [Debian 10 only] Install required python packages for controlling docker via ansible
+- name: Debian 10 - Install required python packages for controlling docker via ansible
   become: yes
   package: name={{ item }} state=latest
   loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python-docker', 'python3-docker' ]
