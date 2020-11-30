@@ -1,11 +1,10 @@
 ---
 # tasks file for ansible-docker
 
-- name: Install package docker-compose from repo
-  become: yes
-  package:
-    name: docker-compose
-    state: latest
+- name: Gather instance facts
+  setup:
+    
+- include_tasks: "docker-{{ ansible_distribution }}.yml"
 
 - name: Add the user {{ ansible_env.USER }}" to the group 'docker'
   become: yes
@@ -14,22 +13,3 @@
     name: "{{ ansible_env.USER }}"
     groups: docker
     append: yes
-
-- name: Enable docker on startup
-  become: yes
-  systemd:
-    name: docker
-    enabled: yes
-    masked: no
-
-- name: Start docker
-  become: yes
-  systemd:
-    state: started
-    name: docker    
-
-- name: Debian 10 - Install required python packages for controlling docker via ansible
-  become: yes
-  package: name={{ item }} state=latest
-  loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python-docker', 'python3-docker' ]
-  when: ansible_distribution == 'Debian' and ansible_distribution_major_version == '10'

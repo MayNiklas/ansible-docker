@@ -1,0 +1,20 @@
+---
+
+- name: Install package docker-compose from repo
+  become: yes
+  package:
+    name: docker-compose
+    state: latest
+
+- name: Enable docker on startup
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no
+
+- name: Start docker
+  become: yes
+  systemd:
+    state: started
+    name: docker    
