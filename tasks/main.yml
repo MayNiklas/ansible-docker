@@ -13,3 +13,7 @@
     name: "{{ ansible_env.USER }}"
     groups: docker
     append: yes
+    
+- name: reset ssh connection to allow user changes to affect 'current login user'
+  meta: reset_connection
+  when: group_add
