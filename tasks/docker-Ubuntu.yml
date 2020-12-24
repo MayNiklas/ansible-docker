@@ -34,7 +34,7 @@
   apt: name={{ item }} state=latest update_cache=yes
   loop: [ 'docker-compose']
 
-- name: Debian 10 - Install required python packages for controlling docker via ansible
+- name: Ubuntu 20.04 - Install required python packages for controlling docker via ansible
   become: yes
   package: name={{ item }} state=latest
   loop: [ 'python3-pip', 'virtualenv', 'python3-setuptools', 'python3-docker' ]
